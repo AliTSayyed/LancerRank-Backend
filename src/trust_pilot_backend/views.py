@@ -1,9 +1,14 @@
+from django.shortcuts import render
 from .models import Reviews, Freelancers, Users
 from .serializer import ReviewsSearializer, FreelancersSearializer, UsersSearializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+# this will confirm is server is running on deployment
+def home_view(request):
+    return render(request, 'home.html')
 
 # create views for CRUD operations and logic for backend
 # the name of each function will be specfied with a url path in urls.py 
