@@ -17,15 +17,19 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# set up environ variables 
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ao#t*y@9tta1hw#(4a4pjlwnhth@&z(g7=3d_z*f&ra-v=g!*n'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -78,12 +82,19 @@ WSGI_APPLICATION = 'trust_pilot_backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+'''
+
+# render PostgreSQL database (live)
+import dj_database_url
+DATABASES = {
+  'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
 
@@ -131,11 +142,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS configuration 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:4200', 
-    'https://alitsayyed.github.io/LancerRank-Frontend/' 
-]
 
 CORS_ALLOW_METHODS = [
     'GET',
