@@ -133,7 +133,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5500',  # Replace with your front-end origin
+    'http://localhost:5500', 
+    'https://alitsayyed.github.io/LancerRank-Frontend/' 
 ]
 
 CORS_ALLOW_METHODS = [
